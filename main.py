@@ -16,7 +16,7 @@ clients = {
 
 processes = []
 for client in clients:
-    if client != "":
+    if client != "" and client is not None:
         processes.append(Thread(target=clients[client].run, args=(client,)))
 
 for process in processes:
