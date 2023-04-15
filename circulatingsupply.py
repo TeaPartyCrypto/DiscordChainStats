@@ -1,14 +1,12 @@
-import dotenv
-dotenv.load_dotenv()
+from dotenv import load_dotenv
+from os import getenv
+load_dotenv()
+bot_token = getenv("CIRCULATING_SUPPLY_TOKEN")
 
 from discord import Intents, Client, Activity, ActivityType
 from discord.ext import tasks
 from tools import get_current_supply, node_connection
 
-from os import getenv
-
-
-bot_token = getenv("CIRCULATING_SUPPLY_TOKEN")
 intents = Intents.default()
 client = Client(intents=intents)
 
@@ -30,4 +28,5 @@ async def on_ready():
     update_supply.start()
 
 
-client.run(bot_token)
+if __name__ == "__main__":
+    client.run(bot_token)

@@ -1,8 +1,10 @@
+from dotenv import load_dotenv
+from os import getenv
+load_dotenv()
+node_url = getenv("NODE_URL")
+
 from web3 import Web3
 from requests import get
-from os import getenv
-
-node_url = getenv("NODE_URL")
 
 
 def get_current_supply(node):
@@ -76,7 +78,5 @@ def format_hashrate(hashrate):
         return str(round(hashrate, 2)) + " H/s"
 
 
-
 if __name__ == "__main__":
-
-    print(get_current_hashrate())
+    print(get_current_supply(node_connection()))

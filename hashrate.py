@@ -1,14 +1,12 @@
-import dotenv
-dotenv.load_dotenv()
+from dotenv import load_dotenv
+from os import getenv
+load_dotenv()
+bot_token = getenv("HASHRATE_TOKEN")
 
 from discord import Intents, Client, Activity, ActivityType
 from discord.ext import tasks
 from tools import get_current_hashrate, format_hashrate
 
-from os import getenv
-
-
-bot_token = getenv("HASHRATE_TOKEN")
 intents = Intents.default()
 client = Client(intents=intents)
 
@@ -32,4 +30,5 @@ async def on_ready():
     update_hashrate.start()
 
 
-client.run(bot_token)
+if __name__ == "__main__":
+    client.run(bot_token)
