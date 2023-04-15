@@ -19,8 +19,14 @@ for client in clients:
     if client != "" and client is not None:
         processes.append(Thread(target=clients[client].run, args=(client,)))
 
+if len(processes) == 0:
+    print("No tokens found. Exiting...")
+    exit()
+
 for process in processes:
     process.start()
 
 for process in processes:
     process.join()
+
+
